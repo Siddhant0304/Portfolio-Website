@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Siddhant Bhujade - Portfolio</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body data-view="r">
+
+<nav id="toggle-bar">
+  <span class="logo-mono">siddhant bhujade</span>
+  <div class="view-switch">
+    <button class="vs-btn active-r" id="btn-r" onclick="switchView('r')">Recruiter</button>
+    <button class="vs-btn" id="btn-h" onclick="switchView('hm')">Hiring Manager</button>
+  </div>
+</nav>
+
+<div class="view visible" id="view-r">
+  <div class="hero recruiter-hero">
+    <div class="hero-main">
+      <div class="hero-eyebrow">Recruiter View</div>
+      <h1>Siddhant<br/><span>Bhujade</span></h1>
+      <p class="hero-sub">Full-stack engineer building backend systems, AI workflows, and data platforms at scale</p>
+      <div class="hero-links">
+        <a class="pill pill-accent" href="mailto:bhujadesiddhant0307@gmail.com">bhujadesiddhant0307@gmail.com</a>
+        <a class="pill" href="https://www.linkedin.com/in/sid0307" target="_blank">LinkedIn</a>
+        <a class="pill" href="resume.pdf" target="_blank">Resume</a>
+        <a class="pill" href="https://github.com" target="_blank">GitHub</a>
+         <a class="pill" href="tel:+19452416853">Phone</a>
+      </div>
+      <div class="recruiter-fit-strip">
+        <div class="fit-chip">MS Information Science - UT Dallas (GPA 3.97)</div>
+        <div class="fit-chip">3+ years full-time experience</div>
+        <div class="fit-chip">Open to relocation across the U.S.</div>
+        <div class="fit-chip">F-1 STEM OPT, requires H-1B sponsorship</div>
+      </div>
+    </div>
+
+    <aside class="hero-panel">
+      <div>
+        <div class="hero-panel-label">Quick Glance</div>
+        <div class="hero-panel-title">Why I'm a strong fit</div>
+        <ul class="priority-list">
+          <li>Software engineer with 3+ years of full-time experience.</li>
+          <li>End-to-End Ownership — From responsive frontends to distributed backend APIs, data pipelines, and AI systems, I've built and shipped full production systems.</li>
+          <li>Deep, Diverse Tech Stack — Python, Java, TypeScript, and C# across FastAPI, Spring Boot, and .NET Core, with hands-on experience in Kafka, Spark, Snowflake, Redis, and LangChain — across cloud, data, and AI tooling.</li>
+        </ul>
+      </div>
+      <div class="hero-panel-meta">
+        <span>Target roles</span>
+        <strong>Software Development Engineer - Backend, AI, Data Platform</strong>
+      </div>
+    </aside>
+  </div>
+  <div id="shared-content-r"></div>
+</div>
+
+<div class="view" id="view-hm">
+  <div class="hero">
+    <div class="hero-eyebrow">Hiring Manager View</div>
+    <h1>Siddhant<br/><span>Bhujade</span></h1>
+    <p class="hero-sub">I build systems that do not fall over, and AI features that actually work in production.</p>
+    <div class="hero-links">
+      <a class="pill pill-accent" href="https://github.com" target="_blank">GitHub</a>
+      <a class="pill" href="https://www.linkedin.com/in/sid0307" target="_blank">LinkedIn</a>
+      <a class="pill" href="resume.pdf" target="_blank">Resume</a>
+      <a class="pill" href="mailto:bhujadesiddhant0307@gmail.com">Email</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">System Deep Dives</div>
+
+    <div class="deep-dive">
+      <div class="dd-label">Project 01 - Distributed Backend Platform</div>
+      <div class="dd-title">Multi-Tenant Data Processing and  Analytics Engine for Loan (LOS) Data.</div>
+      <div class="dd-body">
+        A backend-heavy full-stack platform for loan data ingestion, asynchronous processing, human-in-the-loop validation, and automated report generation with real-time job monitoring across 100+ institutions.
+       Key challenges included strict tenant data isolation, orchestrating background workflows with indefinite human review checkpoints, and offloading heavy analytical computations — including geocoding and report generation — without impacting user-facing API performance.
+      </div>
+      <div class="decision-row">
+        <div class="decision-cell">
+          <div class="dc-label">Why Temporal was used over a simple queue or Airflow?</div>
+          <div class="dc-val">Loan ingestion workflows have long-running human-in-the-loop review steps that could pause for hours or days. Temporal's durable execution model gave us replay and retry semantics for free — without custom retry logic or polling — cutting failure recovery from 3 hours to 15 seconds. Airflow was ruled out because it's built for scheduled, predictable DAGs, not event-driven workflows with indefinite human checkpoints and dynamic branching logic.</div>
+        </div>
+        <div class="decision-cell">
+          <div class="dc-label">How did you scale heavy tasks like report generation and geocoding?</div>
+          <div class="dc-val">Both were too slow and resource-intensive to run inline. Report generation was offloaded as async Celery tasks, queued via RabbitMQ and processed by dedicated workers — keeping the API responsive while reports generated in the background. Geocoding was batched using the Census API with PostGIS caching, so repeated address lookups across 700+ institutions never hit the external API twice.</div>
+        </div>
+        <div class="decision-cell">
+          <div class="dc-label">How was tenant isolation enforced?</div>
+          <div class="dc-val">SQL Server row-level security scoped all queries to the tenant context at the DB layer, not the application layer. Combined with dynamic PII masking at the API boundary to handle zero-trust cross-tenant access.</div>
+        </div>
+        
+        <div class="decision-cell">
+          <div class="dc-label">Key outcome and Impact</div>
+          <div class="dc-val">Scaled the system to automate loan data processing and compliance reporting across 100+ institutions — reducing manual file reviews from days to hours, with real-time job monitoring and strict data isolation — directly enabling credit unions to achieve CDFI certification and secure grants worth millions of dollars.</div>
+        </div>
+      </div>
+      <div class="tech-stack-used">
+        <span class="ts-tag">ASP.NET Core</span><span class="ts-tag">FastAPI</span>
+        <span class="ts-tag">Temporal</span><span class="ts-tag">Celery</span>
+        <span class="ts-tag">RabbitMQ</span><span class="ts-tag">SQL Server RLS</span>
+        <span class="ts-tag">Redis</span><span class="ts-tag">Azure</span>
+      </div>
+    </div>
+
+    <div class="deep-dive">
+      <div class="dd-label">Project 02 - AI / LLM Platform</div>
+      <div class="dd-title">Platform to enable AI-powered Financial Analytics and Performance Benchmarking</div>
+      <div class="dd-body">
+        Built an AI personalization layer on top of the analytics platform, including a multi-tenant LLM gateway,
+        a hybrid retrieval pipeline, and an evaluation framework to measure and improve response quality.
+        The hard part was not getting an LLM to answer questions. It was making it reliably accurate on
+        deterministic financial data where hallucinations are a regulatory risk.
+      </div>
+      <div class="decision-row">
+        <div class="decision-cell">
+          <div class="dc-label">How does the LLM gateway work?</div>
+          <div class="dc-val">Routes requests across multiple OpenAI and Claude models based on institution subscription tier and prompt complexity classification, with API rate limiting, priority queuing and exponential backoff retries
+            — cutting API failures from ~20% to under 5% and reducing inference costs by 35% via smart model routing.</div>
+        </div>
+        <div class="decision-cell">
+          <div class="dc-label">How was response quality improved?</div>
+          <div class="dc-val">Built an LLM-as-Judge prompt evaluation layer combined with real user feedback loops, driving iterative prompt engineering and few-shot optimization — enforcing structured API contracts for deterministic, schema-validated responses and continuously acting on feedback signals to lift response accuracy from 71% to 94% over successive refinement cycles</div>
+        </div>
+        <div class="decision-cell">
+          <div class="dc-label">Why hybrid RAG (vector + SQL)?</div>
+          <div class="dc-val">Pure vector search surfaces semantically similar content but cannot enforce precise numerical constraints from financial datasets. Grounding responses in SQL-verified facts reduced hallucinations by 85%, which was critical in a regulated financial context.</div>
+        </div>
+        <div class="decision-cell">
+          <div class="dc-label">Scale and latency</div>
+          <div class="dc-val">Created dedicated microservices to serve AI-related API traffic and embedding workloads, decoupling them from the core platform backend — cutting P95 latency from 22s to 5s across 500K+ monthly queries with Redis response caching.</div>
+        </div>
+      </div>
+      <div class="tech-stack-used">
+        <span class="ts-tag">FastAPI async</span><span class="ts-tag">pgvector</span>
+        <span class="ts-tag">OpenAI API</span><span class="ts-tag">Claude API</span>
+        <span class="ts-tag">LangChain</span>
+        <span class="ts-tag">Redis cache</span><span class="ts-tag">LLM-as-Judge</span>
+      </div>
+    </div>
+  </div>
+  <div id="shared-content-hm"></div>
+</div>
+
+<template id="section-experience">
+  <div class="section">
+    <div class="section-label">Experience</div>
+
+    <div class="exp-item recruiter-exp-item">
+      <div class="exp-meta">
+        <div class="exp-company">Callahan &amp; Associates</div>
+        <div class="exp-title">Software Engineer</div>
+        <div class="exp-date">Jun 2024 - Present | Washington D.C</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-project">
+          <div class="exp-project-title">AI-Powered Insights &amp; Core Backend Services - PeerSuites</div>
+          <p class="exp-project-summary">PeerSuite is a financial performance analytics SaaS platform serving 700+ credit unions and vendors with AI-powered peer benchmarking, executive dashboards, and regulatory data insights.</p>
+          <ul class="exp-bullets">
+            <li>Designed and shipped an end-to-end AI-powered peer benchmarking system — across distributed backend (ASP.NET Core, FastAPI) and Angular frontend, surfacing LLM-generated insights and recommendations across the entire PeerSuites platform at <span class="highlight">sub-100ms latency</span>. </li>
+            <li>Built a conversational AI analytics assistant that translates natural-language queries into SQL-backed metrics and citation-grounded insights, powered by a RAG pipeline for hybrid retrieval over financial publications and structured data, reducing analysis time from days to secs.</li>
+            <li>Engineered prompt engineering and evaluation infrastructure — including few-shot dynamic templating, fact-grounding, LLM-as-Judge and human feedback loops — driving iterative prompt refinements and optimizations, lifting response accuracy from <span class="highlight">71% to 94%</span>. </li>
+            <li>Designed a multi-tenant LLM gateway routing requests across models by subscription tier and prompt complexity — giving premium users access to higher-capability models while cutting <span class="highlight">inference costs by 35%</span> and <span class="highlight">xAPI failures by 95%</span> via priority queuing and backoff retries.</li>
+            <li>Decoupled LLM and embedding workloads into async microservices with Redis result caching, cutting P95 latency from <span class="highlight">22s to 5s</span> across 500K+ monthly queries.</li>
+            <li>Developed and scaled a unified analytics data platform, ingesting and normalizing regulatory datasets into a canonical financial schema enabling cross-dataset analysis across 1B+ rows, powering frontend dashboards and downstream BI pipelines.</li>
+          </ul>
+          <div class="tech-stack-used">
+            <span class="ts-tag">ASP.NET Core (C#)</span><span class="ts-tag">FastAPI (Python)</span>
+            <span class="ts-tag">LangChain</span><span class="ts-tag">pgvector</span>
+            <span class="ts-tag">OpenAI Embeddings</span><span class="ts-tag">Angular</span>
+            <span class="ts-tag">SQL Server RLS</span><span class="ts-tag">Redis</span>
+            <span class="ts-tag">Snowflake</span>
+          </div>
+        </div>
+
+        <div class="exp-project">
+          <div class="exp-project-title">Data Processing &amp; Report Generation Platform</div>
+          <p class="exp-project-summary">An internal full-stack platform enabling file ingestion, asynchronous loan data processing, human-in-the-loop validation, and automated report generation with real-time job observability.</p>
+          <ul class="exp-bullets">
+            <li>Built and shipped a full-stack web application (React, FastAPI) supporting partner teams to configure file ingestion worflows, monitor async jobs, human-in-the-loop validation, and trigger automated report generation with real-time job observability.</li>
+            <li>Architected fault-tolerant data orchestration workflows in Temporal, processing <span class="highlight">10M+ records</span> with human-in-the-loop review, reducing pipeline failure recovery from 3 hours to <span class="highlight">15 seconds</span>.</li>
+            <li>Engineered event-driven background processing using Python, Celery, and RabbitMQ to offload analytical computations, achieving <span class="highlight">3x throughput</span> while keeping user-facing APIs <span class="highlight">under sub-100ms latency</span>.</li>
+            <li>Scaled <span class="highlight">production-grade ETL pipelines</span> with automated schema validation, data quality gates, and observability alerting, achieving <span class="highlight">99.9% pipeline uptime</span>.</li>
+          </ul>
+          <div class="tech-stack-used">
+            <span class="ts-tag">React (Typescript)</span><span class="ts-tag">FastAPI (Python)</span>
+            <span class="ts-tag">Temporal</span>
+            <span class="ts-tag">Celery</span><span class="ts-tag">RabbitMQ</span>
+            <span class="ts-tag">ETL Pipelines</span><span class="ts-tag">Observability</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item recruiter-exp-item">
+      <div class="exp-meta">
+        <div class="exp-company">Callahan &amp; Associates</div>
+        <div class="exp-title">Software Engineer, Intern</div>
+        <div class="exp-date">Jun 2023 - May 2024 | Washington D.C</div>
+      </div>
+      <div class="exp-content">
+        <ul class="exp-bullets">
+          <li>Developed reusable Angular UI components and REST APIs in ASP.NET Core adhering to API contracts, reducing dashboard load time from <span class="highlight">10s to 3s</span> via lazy loading and optimized change detection.</li>
+          <li>Optimized SQL Server performance via indexing, query refactoring, and connection pooling, reducing P95 query latency from <span class="highlight">5s to 2s</span>.</li>
+          <li>Implemented a Redis cache-aside layer across 15+ endpoints, achieving <span class="highlight">85% hit rate</span> and reducing database load by <span class="highlight">70%</span>.</li>
+          <li>Built a bulk geocoding pipeline using the Census API, Python, and PostGIS to process address data across credit unions, powering CRA compliance reporting and geospatial map visualizations.</li>
+        </ul>
+        <div class="tech-stack-used">
+            <span class="ts-tag">Python</span><span class="ts-tag">ASP.NET </span>
+            <span class="ts-tag">Angular</span>
+            <span class="ts-tag">SQL</span><span class="ts-tag">Redis</span>
+            <span class="ts-tag">ETL Pipelines</span>
+          </div>
+      </div>
+    </div>
+
+    <div class="exp-item recruiter-exp-item">
+      <div class="exp-meta">
+        <div class="exp-company">Persistent Systems</div>
+        <div class="exp-title">Software Engineer</div>
+        <div class="exp-date">Nov 2020 - Jul 2022 | India</div>
+      </div>
+      <div class="exp-content">
+          <div class="exp-project-title">Healthcare Claims Data Processing Platform - IBM Watson Health (client)</div>
+          <p class="exp-project-summary">Distributed data platform processing petabytes of clinical claims data for ML pipelines and BI reporting across large-scale healthcare datasets.</p>
+        <ul class="exp-bullets">
+          <li>Built a distributed data platform processing petabytes of clinical claims data using Spark on Kubernetes and Airflow, ensuring<span class="highlight"> 99%+ data integrity </span>for ML pipelines and BI reporting.</li>
+          <li>Engineered high-throughput Kafka streaming pipelines with exactly-once delivery guarantees and custom partitioning, enabling real-time ingestion of 10M+ healthcare events per day with zero message loss.</li>
+          <li>Developed event-driven microservices in Java/Spring Boot exposing a GraphQL API layer, reducing inter-service dependencies by 40% and improving <span class="highlight">system uptime to 99.9%</span>.</li>
+          <li>Implemented observability with Prometheus, Grafana, and CloudWatch(IBM Cloud Monitoring), creating automated alerting and service health dashboards that reduced <span class="highlight">incident detection time by 70%</span>.</li>
+          <li>Created unit tests using JUnit and Mockito, maintaining <span class="highlight">95%+ code coverage</span>—improving system reliability through early bug detection and resolution.</li>
+        </ul>
+            <div class="tech-stack-used">
+            <span class="ts-tag">Java/Springboot</span><span class="ts-tag">Scala</span>
+            <span class="ts-tag">Airflow</span>
+            <span class="ts-tag">Kafka</span><span class="ts-tag">Spark</span>
+            <span class="ts-tag">Grafana</span><span class="ts-tag">Prometheus</span>
+            <span class="ts-tag">Kubernetes</span><span class="ts-tag">Docker</span>
+          </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="section-skills">
+  <div class="section">
+    <div class="section-label">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span><span class="tag">C#</span><span class="tag">Java</span><span class="tag">SQL</span>
+          <span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">GraphQL</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Frameworks</div>
+        <div class="skill-tags">
+          <span class="tag">FastAPI</span><span class="tag">ASP.NET Core</span>
+          <span class="tag">Spring Boot</span><span class="tag">Angular</span>
+          <span class="tag">React</span><span class="tag">Hadoop</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Data and Messaging</div>
+        <div class="skill-tags">
+          <span class="tag">Kafka</span><span class="tag">Spark</span><span class="tag">Airflow</span>
+          <span class="tag">RabbitMQ</span><span class="tag">AWS SQS</span><span class="tag">Temporal</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Databases</div>
+        <div class="skill-tags">
+          <span class="tag">SQL Server</span><span class="tag">PostgreSQL</span>
+          <span class="tag">Redis</span><span class="tag">Elasticsearch</span>
+          <span class="tag">DynamoDB</span><span class="tag">Redshift</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Cloud and DevOps</div>
+        <div class="skill-tags">
+          <span class="tag">AWS</span><span class="tag">Azure</span>
+          <span class="tag">Docker</span><span class="tag">Git</span>
+          <span class="tag">Kubernetes</span><span class="tag">GitHub</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">AI</div>
+        <div class="skill-tags">
+          <span class="tag">OpenAI API</span><span class="tag">Claude API</span>
+          <span class="tag">LangChain</span><span class="tag">LangGraph</span>
+          <span class="tag">Langfuse</span><span class="tag">Pinecone</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Observability</div>
+        <div class="skill-tags">
+          <span class="tag">Prometheus</span><span class="tag">Grafana</span>
+          <span class="tag">Kibana</span><span class="tag">Elasticsearch</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="section-education">
+  <div class="section">
+    <div class="section-label">Education</div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-degree">M.S. Information Science</div>
+        <div class="edu-school">The University of Texas at Dallas</div>
+        <div class="exp-date" style="margin-bottom:0.5rem">Aug 2022 - May 2024</div>
+        <div class="edu-gpa">GPA 3.97 / 4.0</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">B.S. Computer Science</div>
+        <div class="edu-school">Jabalpur Engineering College, India</div>
+        <div class="exp-date" style="margin-bottom:0.5rem">Aug 2016 - Aug 2020</div>
+        <div class="edu-gpa">GPA 3.7 / 4.0</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="section-footer">
+  <footer>
+    <span class="footer-name">Siddhant Bhujade</span>
+    <span class="footer-mono">(945)-241-6853 | bhujadesiddhant0307@gmail.com</span>
+  </footer>
+</template>
+
+<script src="script.js"></script>
+</body>
+</html>
